@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
@@ -14,34 +16,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        // FullScreen
+        // Set frame layout
+        setContentView(R.layout.frame_layout)
+
+        // Allow FullScreen
         supportActionBar?.hide()
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        // get Image View
-        val logo = findViewById<ImageView>(R.id.splashLogo);
-
-        Glide.with(this).load(R.drawable.alien).into(logo)
-
-        // Importar el so al splash
-//        val MEDIAPLAYER = MediaPlayer.create(this, R.raw.soareproduir);
-  //      MEDIAPLAYER.setVolume(100f, 100f);
-
-
-    //    Timer().schedule(SPLASH_DURATION){
-            changeActivity()
-     //   }
+        var BTMLOGIN = findViewById<Button>(R.id.BTMLOGIN);
+        var BTMREGISTRO = findViewById<Button>(R.id.BTMREGISTRO);
+        BTMLOGIN.setOnClickListener(){
+            Toast.makeText(this, "click botó login",Toast.LENGTH_LONG).show();
+        }
+        BTMREGISTRO.setOnClickListener(){
+            Toast.makeText(this, "click botó Registre",Toast.LENGTH_LONG).show();
+        }
     }
 
     private fun changeActivity() {
+        // Change to previous Activity
         Handler().postDelayed(
             Runnable {
                 val intent = Intent(this, Splash::class.java)
                 startActivity(intent)
             }, SPLASH_DURATION)
-        //val INTENT = Intent(this, StartScreen::class.java)
-        //startActivity(INTENT)
     }
 }

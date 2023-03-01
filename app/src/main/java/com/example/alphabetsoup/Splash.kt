@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import java.util.Timer
 import kotlin.concurrent.schedule
 
@@ -12,14 +14,27 @@ class Splash : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.frame_layout)
+        setContentView(R.layout.activity_main)
+
+        // Allow fullscreen
         supportActionBar?.hide()
+
+        // Set alien Splash Screen
+        val logo = findViewById<ImageView>(R.id.splashLogo);
+        Glide.with(this).load(R.drawable.alien).into(logo)
+
+        // Change activity
         canviarActivity()
     }
+
     private fun canviarActivity(){
-        Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }, duracio)
+        Timer().schedule(duracio) {
+            saltaInici()
+        }
+    }
+
+    fun saltaInici(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
