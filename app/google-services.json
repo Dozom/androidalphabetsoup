@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "35987327380",
-    "project_id": "montserratak-c8a9b",
-    "storage_bucket": "montserratak-c8a9b.appspot.com"
+    "project_number": "470040016441",
+    "project_id": "alphabetsoup-a65a2",
+    "storage_bucket": "alphabetsoup-a65a2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:35987327380:android:e21d31c16a72362664e781",
+        "mobilesdk_app_id": "1:470040016441:android:cadc0ea84b4dbac115ffe8",
         "android_client_info": {
           "package_name": "com.example.alphabetsoup"
         }
       },
       "oauth_client": [
         {
-          "client_id": "35987327380-anb3cbgo9dtn63esicqsqrpdr3die3le.apps.googleusercontent.com",
+          "client_id": "470040016441-1mqqsltfjomlveude28dtadpujhv92ju.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.alphabetsoup",
-            "certificate_hash": "01330584b1ffbf6dc062f870c0b1ea89d5fe3af5"
+            "certificate_hash": "4b594d4a993f213bc5e6160d635f123193c1940d"
           }
         },
         {
-          "client_id": "35987327380-usulmkc98l749k7dhfocbdjaltkp927h.apps.googleusercontent.com",
+          "client_id": "470040016441-f607rss388jc1ll6iml7u7qsaju1c63i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQmfeDbDNK9lgtkQBRkktytDlDYvLtn8E"
+          "current_key": "AIzaSyA0DBKCp_qNjuoTWM9qtXXGLH7qaVS6BQ8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "35987327380-usulmkc98l749k7dhfocbdjaltkp927h.apps.googleusercontent.com",
+              "client_id": "470040016441-f607rss388jc1ll6iml7u7qsaju1c63i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
