@@ -1,4 +1,4 @@
-package com.example.alphabetsoup
+package com.mont.alphabetsoup
 
 import org.junit.Test
 
