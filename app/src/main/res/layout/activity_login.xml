@@ -14,6 +14,10 @@
         android:orientation="vertical"
         android:padding="30dp">
         <!-- ENTREM EL MAIL -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/correoLogin"
             android:layout_width="match_parent"
@@ -22,13 +26,22 @@
             android:hint="@string/correoLogin" />
         <!-- forcem que la entrada sigui un correu electronic -->
         <!-- ENTREM EL PASSWORD -->
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
         <EditText
             android:id="@+id/passLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="@string/passLogin" />
+            android:hint="@string/passLogin"
+            android:layout_marginTop="10dp"/>
         <!-- forcem que la entrada sigui un password -->
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!-- BOTO DE ENTRAR -->
         <Button
             android:id="@+id/Btnlogin"
@@ -36,6 +49,9 @@
             android:layout_height="wrap_content"
             android:text="@string/Btnlogin"
             android:layout_marginTop="10dp"
+            android:background="@drawable/botopropi"
+            android:textColor="@color/black"
+
             />
     </LinearLayout>
 </RelativeLayout>
