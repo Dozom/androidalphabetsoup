@@ -89,6 +89,7 @@ class Register : AppCompatActivity() {
             var passString: String = passwordView.getText().toString()
             var nombreString: String = usernameView.getText().toString()
             var fechaString: String= dateView.getText().toString()
+            var nivell: String = "1"
 
             var dadesJugador : HashMap<String,Any> = HashMap<String, Any>()
             dadesJugador.put ("Uid",uidString)
@@ -97,6 +98,8 @@ class Register : AppCompatActivity() {
             dadesJugador.put ("Nom",nombreString)
             dadesJugador.put ("Data",fechaString)
             dadesJugador.put ("Puntuacio",puntuacio)
+            dadesJugador.put ("Nivell",nivell)
+
             // Creem un punter a la base de dades i li donem un nom
             var database: FirebaseDatabase = FirebaseDatabase.getInstance()
             var reference: DatabaseReference = database.getReference("jugador")

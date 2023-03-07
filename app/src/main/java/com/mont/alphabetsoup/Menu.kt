@@ -24,6 +24,7 @@ class Menu : AppCompatActivity() {
     lateinit var uid: TextView
     lateinit var correo: TextView
     lateinit var nom: TextView
+    private var nivell ="1"
     //reference serà el punter que ens envia a la base de dades de dades
     lateinit var reference: DatabaseReference
 
@@ -52,6 +53,7 @@ class Menu : AppCompatActivity() {
                         uid.setText(ds.child("Uid").getValue().toString())
                         correo.setText(ds.child("Email").getValue().toString())
                         nom.setText(ds.child("Nom").getValue().toString())
+                        nivell = ds.child("Nivell").getValue().toString()
                     }
                     if (!trobat)
                     {
@@ -100,7 +102,18 @@ class Menu : AppCompatActivity() {
             Toast.makeText(this,"Puntuacions", Toast.LENGTH_SHORT).show()
         }
         jugarBtn.setOnClickListener(){
-            Toast.makeText(this,"JUGAR", Toast.LENGTH_SHORT).show()
+//hem d'enviar el id, el nom i el contador, i el nivell
+            var Uids : String = uid.getText().toString()
+            var noms : String = nom.getText().toString()
+            var puntuacios : String = puntuacio.getText().toString()
+            var nivells : String = nivell
+            val intent= Intent(this, selecccioniNivell::class.java)
+            intent.putExtra("UID",Uids)
+            intent.putExtra("NOM",noms)
+            intent.putExtra("PUNTUACIO",puntuacios)
+            intent.putExtra("NIVELL",nivells)
+            startActivity(intent)
+            finish()
         }
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
