@@ -1,5 +1,6 @@
 package com.mont.alphabetsoup
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -49,7 +50,7 @@ class selecccioniNivell : AppCompatActivity() {
                 "indian gooseberry",
                 "jackfruit"
             )
-
+            canviarnivell1()
             Toast.makeText(this, "NIVELL 1", Toast.LENGTH_LONG).show()
             imageButton1.isEnabled = true
             imageButton1.visibility = View.VISIBLE
@@ -66,5 +67,10 @@ class selecccioniNivell : AppCompatActivity() {
             imageButton3.isEnabled = true
             imageButton3.visibility = View.VISIBLE
         }
+    }
+
+    private fun canviarnivell1() {
+        val intent = Intent(this, LevelOne::class.java)
+        startActivity(intent)
     }
 }

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/botopropi.xml" value="0.1045" />
+        <entry key="app/src/main/res/drawable/rectangle.xml" value="0.2215" />
+        <entry key="app/src/main/res/layout/activity_level_one.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_selecccioni_nivell.xml" value="0.4810126582278481" />
