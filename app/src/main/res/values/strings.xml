@@ -22,4 +22,7 @@
     <string name="jugarBtn">Jugar</string>
     <string name="PuntuacionsBtn">Puntuacions</string>
     <string name="CreditsBtn">Crèdits</string>
+    <string name="Level1Indicator" translatable="false">Nivell 1</string>
+    <string name="Level2Indicator" translatable="false">Nivell 2</string>
+    <string name="Level3Indicator" translatable="false">Nivell 3</string>
 </resources>

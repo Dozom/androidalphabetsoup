@@ -3,21 +3,28 @@ package com.mont.alphabetsoup
 import android.R.attr.button
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Gravity
+import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 
 class LevelOne : AppCompatActivity() {
     lateinit var v00: ImageView
+    lateinit var countTime : TextView
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_one)
         var letterPanel:GridLayout = findViewById<GridLayout>(R.id.letterPanel)
+        countTime = findViewById(R.id.timerText)
         for (x in 0..5){
             for (y in 0..7){
                 var l : Letter = Letter(this)
@@ -35,6 +42,18 @@ class LevelOne : AppCompatActivity() {
                     l.setColorRed()
                 }
             }
+        }
+
+        fun startTimeCounter(view: View) {
+                object : CountDownTimer(30000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        countTime.text = (millisUntilFinished / 1000).toString()
+                    }
+
+                    override fun onFinish() {
+                        countTime.text = "S'ha acabat el temps"
+                    }
+                }.start()
         }
 
 /*        val var00 :ImageView = findViewById(R.id.rect00);
