@@ -16,7 +16,7 @@ import java.text.DateFormat.getDateInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     lateinit var emailView :EditText
     lateinit var passwordView :EditText
     lateinit var usernameView : EditText
@@ -26,8 +26,6 @@ class Register : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Set view
         setContentView(R.layout.activity_register)
         supportActionBar?.hide()
 
@@ -36,8 +34,7 @@ class Register : AppCompatActivity() {
         usernameView =findViewById<EditText>(R.id.nombreEt)
         dateView =findViewById<TextView>(R.id.fechaTxt)
         registerView =findViewById<Button>(R.id.Register)
-        //carreguem la data al TextView
-        //Utilitzem calendar (hi ha moltes altres opcions)
+
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat.getDateInstance() //or use
         getDateInstance()
@@ -107,7 +104,7 @@ class Register : AppCompatActivity() {
                 //crea un fill amb els valors de dadesJugador
                 reference.child(uidString).setValue(dadesJugador)
                 Toast.makeText(this, "USUARI BEN REGISTRAT", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Menu::class.java)
+                val intent = Intent(this, MenuActivity::class.java)
                 startActivity(intent)
             }
             else{

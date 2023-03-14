@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import java.util.Timer
 import kotlin.concurrent.schedule
 
-class Splash : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     private val TIME: Long=3000;
     override fun onCreate(savedInstanceState: Bundle?) {
         // Set splash view
