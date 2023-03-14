@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#58FA58"
+    android:background="#1B1B1B"
     tools:context=".Register">
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,30 +16,37 @@
         <!-- ENTREM EL MAIL -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/correoLogin"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/correoLogin" />
-        <!-- forcem que la entrada sigui un correu electronic -->
-        <!-- ENTREM EL PASSWORD -->
+            android:background="@drawable/rounded_corner">
+
+            <EditText
+                android:id="@+id/correoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/correoLogin"
+                android:inputType="textEmailAddress"
+                android:textColor="#FF0000"
+                android:textColorHint="#FFFFFF" />
+            <!-- forcem que la entrada sigui un correu electronic -->
+            <!-- ENTREM EL PASSWORD -->
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
             app:passwordToggleEnabled="true">
 
-        <EditText
-            android:id="@+id/passLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/passLogin"
-            android:layout_marginTop="10dp"/>
-        <!-- forcem que la entrada sigui un password -->
+            <EditText
+                android:id="@+id/passLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/passLogin"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
+            <!-- forcem que la entrada sigui un password -->
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTO DE ENTRAR -->
