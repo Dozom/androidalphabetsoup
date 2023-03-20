@@ -9,7 +9,7 @@ import java.security.AccessControlContext
 class Letter : androidx.appcompat.widget.AppCompatButton {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
-        width = 1
+        //
     }
     fun setColor(){
         setBackgroundColor(Color.BLUE)
