@@ -1,9 +1,11 @@
 package com.mont.alphabetsoup
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -52,24 +54,29 @@ class LevelOneActivity : AppCompatActivity() {
             }
         }
 */
-        for (x in word.length until 32) {
-            val l: Letter = Letter(this)
+        for (x in 1..48) {
+            /*val l: Letter = Letter(this)
             l.setColor()
-            l.width = 50;
-
-            val params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-                GridLayout.LayoutParams.MATCH_PARENT,
-                GridLayout.LayoutParams.MATCH_PARENT,
-                1f
-            )
-//          l.layoutParams = params
             l.gravity = Gravity.CENTER_HORIZONTAL
             l.text = alphabet.random().toString()
             l.id = x
             letterPanel.addView(l)
             l.setOnClickListener {
                 l.setColorRed()
+            }*/
+            val l : TextView = TextView(this)
+            l.setBackgroundColor(Color.BLUE)
+            l.gravity = Gravity.CENTER_HORIZONTAL
+            l.text = alphabet.random().toString()
+            l.id = x
+            l.textSize = 30F
+            l.width = 160
+            l.height = 116
+            letterPanel.addView(l)
+            l.setOnClickListener {
+                l.setBackgroundColor(Color.RED)
             }
+
         }
 
 

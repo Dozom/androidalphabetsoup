@@ -11,11 +11,10 @@ class Letter : androidx.appcompat.widget.AppCompatButton {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
         //
     }
-    fun setColor(){
+    fun setColor() {
         setBackgroundColor(Color.BLUE)
     }
     fun setColorRed(){
         setBackgroundColor(Color.RED)
     }
-
 }
