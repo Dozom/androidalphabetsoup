@@ -109,7 +109,8 @@ class MenuActivity : AppCompatActivity() {
             Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
         }
         PuntuacionsBtn.setOnClickListener(){
-            Toast.makeText(this,"Puntuacions", Toast.LENGTH_SHORT).show()
+            carregarPuntuacions()
+//            Toast.makeText(this,"Puntuacions", Toast.LENGTH_SHORT).show()
         }
         jugarBtn.setOnClickListener(){
             SeleccionarNivell()
@@ -134,6 +135,15 @@ class MenuActivity : AppCompatActivity() {
         intent.putExtra("NOM", noms)
         intent.putExtra("PUNTUACIO", puntuacions)
         intent.putExtra("NIVELL", nivells)
+        startActivity(intent)
+        finish()
+    }
+    private fun carregarPuntuacions() {
+        // Tancar la sesió
+//        auth.signOut()
+
+        // Canviar a la pantalla de la Main Activity
+        val intent= Intent(this, PuntuacionsActivity::class.java)
         startActivity(intent)
         finish()
     }
