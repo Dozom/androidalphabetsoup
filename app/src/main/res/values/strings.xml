@@ -25,4 +25,5 @@
     <string name="Level1Indicator" translatable="false">Nivell 1</string>
     <string name="Level2Indicator" translatable="false">Nivell 2</string>
     <string name="Level3Indicator" translatable="false">Nivell 3</string>
+    <string name="popup_msg">Has perdut!</string>
 </resources>

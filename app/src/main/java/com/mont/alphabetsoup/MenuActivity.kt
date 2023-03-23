@@ -35,8 +35,8 @@ class MenuActivity : AppCompatActivity() {
     }
     private fun consultaDadesJugador() {
         // consulta a la base de dades de jugador
-        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        var bdreference:DatabaseReference = database.getReference("jugador")
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val bdreference:DatabaseReference = database.getReference("jugador")
 
         bdreference.addValueEventListener (object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -44,22 +44,22 @@ class MenuActivity : AppCompatActivity() {
 //                Log.i ("DEBUG","arrel key"+ snapshot.key.toString())
 
                 // ara capturem tots els fills
-                var trobat:Boolean =false
-                for (ds in snapshot.getChildren()) {
+                var trobat =false
+                for (ds in snapshot.children) {
    //                 Log.i ("DEBUG","DS key:"+ds.child("Uid").key.toString())
    //                 Log.i ("DEBUG","DS value:"+ds.child("Uid").getValue().toString())
    //                 Log.i ("DEBUG","DS data:"+ds.child("Data").getValue().toString())
    //                 Log.i ("DEBUG","DS mail:"+ds.child("Email").getValue().toString())
 
                     // Si el email de la base de dades es igual al email que s'ha introduit
-                    if(ds.child("Email").getValue().toString().equals(user?.email)){
+                    if(ds.child("Email").value.toString() == user?.email){
                         trobat=true
                         // Setejar dades del jugador
-                        puntuacio.setText(ds.child("Puntuacio").getValue().toString())
-                        uid.setText(ds.child("Uid").getValue().toString())
-                        correo.setText(ds.child("Email").getValue().toString())
-                        nom.setText(ds.child("Nom").getValue().toString())
-                        nivell = ds.child("Nivell").getValue().toString()
+                        puntuacio.text = ds.child("Puntuacio").value.toString()
+                        uid.text = ds.child("Uid").value.toString()
+                        correo.text = ds.child("Email").value.toString()
+                        nom.text = ds.child("Nom").value.toString()
+                        nivell = ds.child("Nivell").value.toString()
                     }
                     if (!trobat)
                     {
@@ -124,10 +124,10 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun SeleccionarNivell() {
-        var Uids: String = uid.getText().toString()
-        var noms: String = nom.getText().toString()
-        var puntuacions: String = puntuacio.getText().toString()
-        var nivells: String = nivell
+        val Uids: String = uid.text.toString()
+        val noms: String = nom.text.toString()
+        val puntuacions: String = puntuacio.text.toString()
+        val nivells: String = nivell
 
         // Moure a la pantalla seleccioniNivell passant els parametres del jugador
         val intent = Intent(this, SelectLevelActivity::class.java)

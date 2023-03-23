@@ -1,16 +1,15 @@
 package com.mont.alphabetsoup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.util.Log
+import android.view.*
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import kotlin.random.Random
 
 
 class LevelOneActivity : AppCompatActivity() {
@@ -21,69 +20,55 @@ class LevelOneActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_one)
-
+        val board :BoardController = BoardController()
         val letterPanel: GridLayout = findViewById<GridLayout>(R.id.letterPanel)
         countTime = findViewById<TextView>(R.id.timerText)
         val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        val words = arrayOf("CAT", "DOG", "BIRD", "FISH", "HORSE")
-        val word = words.random()
-
+        val words = arrayListOf<String>("CAT", "DOG", "BIRD", "FISH", "HORSE", "CHICKEN")
+        var usedPositions : ArrayList<String> = ArrayList()
+        var posicioCaracter :Int = 0
+        var filled : Int = 0
+        var randomStart: Int = 0
+        var acc: Int = 0
+        for (i in 0 until 6) {
+            val num = Random.nextInt(0,words.size)
+            val word = words[num]
+            words.removeAt(num)
+            randomStart = Random.nextInt(0, 6 - word.length)
+            for (j in 0 until 8) {
+                val l = TextView(this)
+                l.setBackgroundColor(Color.BLUE)
+                l.gravity = Gravity.CENTER_HORIZONTAL
+                if (j < word.length && usedPositions.contains(""+i+""+j+"") == false) {
+                    l.text = word[j].toString()
+                    usedPositions.add(""+i+""+j+"")
+                }else{
+                    l.text = alphabet.random().toString()
+                }
+                /*if (j >= randomStart){
+                    if (acc < word.length){
+                        l.text = word[acc].toString()
+                        acc += 1
+                        usedPositions.add(""+i+""+j+"")
+                    }
+                } else {
+                    l.text = alphabet.random().toString()
+                }*/
+                l.id = (i*j)+1
+                l.textSize = 30F
+                l.width = 160
+                l.height = 116
+                l.setOnClickListener {
+                    l.setBackgroundColor(Color.RED)
+                    board.addToArray(""+i+""+j+"")
+                    Toast.makeText(this, board.returnArray(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, ""+i+""+j+"", Toast.LENGTH_SHORT).show()
+                }
+                letterPanel.addView(l)
+            }
+            //acc = 0
+        }
         startTimeCounter()
-/*
-        for (i in word.indices) {
-            val letter = word[i].toString()
-            val textView = TextView(this)
-            textView.text = letter
-            textView.textSize = 20f
-            textView.setTextColor(Color.BLACK)
-            textView.setBackgroundColor(Color.BLUE)
-            textView.gravity = Gravity.CENTER
-            textView.width = 100;
-            textView.height = 100;
-            textView.setPadding(0)
-            val params: GridLayout.LayoutParams = GridLayout.LayoutParams(
-                GridLayout.spec(i / 8), GridLayout.spec(i % 8)
-            )
-            params.width = GridLayout.LayoutParams.WRAP_CONTENT
-            params.height = GridLayout.LayoutParams.WRAP_CONTENT
-
-            textView.layoutParams = params
-            letterPanel.addView(textView)
-            textView.setOnClickListener {
-                textView.setBackgroundColor(Color.RED)
-            }
-        }
-*/
-        for (x in 1..48) {
-            /*val l: Letter = Letter(this)
-            l.setColor()
-            l.gravity = Gravity.CENTER_HORIZONTAL
-            l.text = alphabet.random().toString()
-            l.id = x
-            letterPanel.addView(l)
-            l.setOnClickListener {
-                l.setColorRed()
-            }*/
-            val l : TextView = TextView(this)
-            l.setBackgroundColor(Color.BLUE)
-            l.gravity = Gravity.CENTER_HORIZONTAL
-            l.text = alphabet.random().toString()
-            l.id = x
-            l.textSize = 30F
-            l.width = 160
-            l.height = 116
-            letterPanel.addView(l)
-            l.setOnClickListener {
-                l.setBackgroundColor(Color.RED)
-            }
-
-        }
-
-
-/*        val var00 :ImageView = findViewById(R.id.rect00);
-        var00.setOnClickListener{
-            Toast.makeText(this, "Tocat el: "+var00.id, Toast.LENGTH_LONG).show()
-        }*/
     }
 
     private fun startTimeCounter() {
@@ -94,7 +79,40 @@ class LevelOneActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 countTime.text = "S'ha acabat el temps"
+                showPopupWindow()
             }
         }.start()
+    }
+
+    @SuppressLint("InflateParams")
+    fun showPopupWindow() {
+
+        // inflate the layout of the popup window
+        val inflater : LayoutInflater = layoutInflater
+        getSystemService(LAYOUT_INFLATER_SERVICE)
+        val popupView : View = inflater.inflate(R.layout.popup_window, null)
+
+        // create the popup window
+        val width = 680
+        val height = 980
+        val popupWindow = PopupWindow(popupView, width, height, false)
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        val view = findViewById<View>(android.R.id.content)
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+
+        popupWindow.contentView.findViewById<Button>(R.id.retryButton).setOnClickListener {
+            popupWindow.dismiss();
+            finish();
+            startActivity(intent);
+        }
+
+        popupWindow.contentView.findViewById<Button>(R.id.quitButton).setOnClickListener {
+            popupWindow.dismiss();
+            finish();
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
