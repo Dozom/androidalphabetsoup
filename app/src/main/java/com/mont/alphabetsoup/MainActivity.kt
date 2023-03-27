@@ -11,36 +11,8 @@ import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
-    var SPLASH_DURATION: Long = 3000;
     lateinit var auth: FirebaseAuth
     var user: FirebaseUser? = null;
-
-    private fun usuariLogejat() {
-        // Iniciar menu si l'usuari està loguejat
-        if (user != null) {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    override fun onStart() {
-        usuariLogejat()
-        super.onStart()
-    }
-
-    private fun gestionarLogin() {
-        // Enviar al controller del login
-        Toast.makeText(this, "click botó Login", Toast.LENGTH_LONG).show();
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
-    }
-
-    private fun gestionarRegistre() {
-        Toast.makeText(this, "click botó Registre", Toast.LENGTH_LONG).show();
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +23,12 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        //assigna valor a user
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
 
-        // Obtenir els botons de la vista
-        var loginButton = findViewById<Button>(R.id.BTMLOGIN);
-        var registerButton = findViewById<Button>(R.id.BTMREGISTRO);
-
-        // Vincular els botons de la vista a una acció
+        // Control d'events
+        val loginButton = findViewById<Button>(R.id.BTMLOGIN);
+        val registerButton = findViewById<Button>(R.id.BTMREGISTRO);
         loginButton.setOnClickListener() {
             gestionarLogin()
         }
@@ -68,4 +37,29 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    override fun onStart() {
+        usuariLogejat()
+        super.onStart()
+    }
+
+    private fun usuariLogejat() {
+        // Iniciar menu si l'usuari està loguejat
+        if (user != null) {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun gestionarLogin() {
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
+
+    private fun gestionarRegistre() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

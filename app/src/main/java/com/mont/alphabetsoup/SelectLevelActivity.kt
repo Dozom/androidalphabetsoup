@@ -18,19 +18,19 @@ class SelectLevelActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_selecccioni_nivell)
-
+        setContentView(R.layout.activity_seleccioni_nivell)
+        Toast.makeText(this, "WOOOOOOO", Toast.LENGTH_LONG).show()
         // Recuperem els valors que li hem passat a la vista
-        var intent: Bundle? = getIntent().extras
-        UID = intent?.get("UID").toString()
-        NOM = intent?.get("NOM").toString()
-        PUNTUACIO = intent?.get("PUNTUACIO").toString()
-        NIVELL = intent?.get("NIVELL").toString()
+        var intent: Bundle? = intent.extras
+        UID = intent?.getString("UID").toString()
+        NOM = intent?.getString("NOM").toString()
+        PUNTUACIO = intent?.getString("PUNTUACIO").toString()
+        NIVELL = intent?.getString("NIVELL").toString()
 
         // Busco els botons de la vista
-        imageButton1 = findViewById(R.id.imageButton)
-        imageButton2 = findViewById(R.id.imageButton2)
-        imageButton3 = findViewById(R.id.imageButton3)
+        imageButton1 = findViewById(R.id.lvl1Button)
+        imageButton2 = findViewById(R.id.lvl2Button)
+        imageButton3 = findViewById(R.id.lvl3Button)
 
         // Deshabilito els botons
         imageButton1.isEnabled = false
@@ -42,7 +42,6 @@ class SelectLevelActivity : AppCompatActivity() {
 
         if (NIVELL == "1") {
             // En cas de que el usuari està al nivell 1
-
             // Fruits
             val words = arrayOf(
                 "apple",
@@ -78,5 +77,6 @@ class SelectLevelActivity : AppCompatActivity() {
     private fun canviarnivell1() {
         val intent = Intent(this, LevelOneActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

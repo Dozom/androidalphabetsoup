@@ -7,11 +7,12 @@
         <entry key="app/src/main/res/drawable/botopropi.xml" value="0.1045" />
         <entry key="app/src/main/res/drawable/cela.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.2215" />
-        <entry key="app/src/main/res/layout/activity_level_one.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_level_one.xml" value="0.24595947265625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_puntuacions.xml" value="0.22870370370370371" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_selecccioni_nivell.xml" value="0.4810126582278481" />
+        <entry key="app/src/main/res/layout/activity_selecccioni_nivell.xml" value="0.13438735177865613" />
         <entry key="app/src/main/res/layout/frame_layout.xml" value="0.1" />
       </map>
     </option>

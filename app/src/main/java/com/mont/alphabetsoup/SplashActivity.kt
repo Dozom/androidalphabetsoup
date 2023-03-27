@@ -9,28 +9,23 @@ import java.util.Timer
 import kotlin.concurrent.schedule
 
 class SplashActivity : AppCompatActivity() {
-    private val TIME: Long=3000;
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Set splash view
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        // Hide android top bar
         supportActionBar?.hide()
-        // Set image to splash
+
         val logo = findViewById<ImageView>(R.id.splashImageContainer);
         Glide.with(this).load(R.drawable.splashimage).into(logo)
-        // Change Activity Method
-        changeActivity()
+        moveToMainActivity()
     }
 
-    private fun changeActivity(){
-        Timer().schedule(TIME) {
-            moveToMainActivity()
-        }
-    }
-
-    fun moveToMainActivity(){
+    /* Method to change Activity */
+    private fun moveToMainActivity(){
+        val TIME: Long=3000;
         val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        Timer().schedule(TIME) {
+            startActivity(intent)
+        }
     }
 }

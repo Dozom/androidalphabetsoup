@@ -16,6 +16,32 @@ class Login : AppCompatActivity() {
     lateinit var BtnLogin: Button;
     lateinit var auth: FirebaseAuth;
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+
+        correoLogin = findViewById<EditText>(R.id.correoLogin)
+        passLogin = findViewById<EditText>(R.id.passLogin)
+        BtnLogin = findViewById<Button>(R.id.Btnlogin)
+
+        BtnLogin.setOnClickListener() {
+            gestionarLogin()
+        }
+    }
+    private fun gestionarLogin() {
+        var email: String = correoLogin.getText().toString()
+        var passw: String = passLogin.getText().toString()
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            correoLogin.setError("Invalid Email")
+        } else if (passw.length < 6) {
+            passLogin.setError("Password less than 6 chars")
+        } else {
+            auth = FirebaseAuth.getInstance()
+            LogindeJugador(email, passw);
+        }
+    }
+
+
     fun updateUI(user: FirebaseUser?) {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
@@ -35,30 +61,6 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun gestionarLogin() {
-        var email: String = correoLogin.getText().toString()
-        var passw: String = passLogin.getText().toString()
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            correoLogin.setError("Invalid Email")
-        } else if (passw.length < 6) {
-            passLogin.setError("Password less than 6 chars")
-        } else {
-            auth = FirebaseAuth.getInstance()
-            LogindeJugador(email, passw);
-        }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
-        correoLogin = findViewById<EditText>(R.id.correoLogin)
-        passLogin = findViewById<EditText>(R.id.passLogin)
-        BtnLogin = findViewById<Button>(R.id.Btnlogin)
-
-        BtnLogin.setOnClickListener() {
-            gestionarLogin()
-        }
-    }
 
 }

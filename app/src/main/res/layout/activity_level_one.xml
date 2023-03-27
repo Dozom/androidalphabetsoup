@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="395dp"
+        app:layout_constraintGuide_end="361dp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="395dp"
+        app:layout_constraintGuide_begin="362dp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -84,6 +84,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#FF5156"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/Level1Indicator"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -98,6 +101,9 @@
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#8EFF5C"
         android:text="0"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.478"
@@ -118,8 +124,25 @@
         android:rowCount="8"
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/guideline5"
+        app:layout_constraintVertical_bias="0.0"
         tools:context=".LevelOne" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="176dp"
+        android:layout_height="63dp"
+        android:text="Animals"
+        android:gravity="center"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#51AEFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

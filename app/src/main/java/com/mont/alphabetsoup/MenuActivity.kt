@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -25,57 +26,16 @@ class MenuActivity : AppCompatActivity() {
     lateinit var correo: TextView
     lateinit var nom: TextView
     private var nivell ="1"
-
-    //reference serà el punter que ens envia a la base de dades de dades
     lateinit var reference: DatabaseReference
 
-    override fun onStart(){
-        Usuarilogejat()
-        super.onStart()
-    }
-    private fun consultaDadesJugador() {
-        // consulta a la base de dades de jugador
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val bdreference:DatabaseReference = database.getReference("jugador")
-
-        bdreference.addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-//                Log.i ("DEBUG","arrel value"+ snapshot.getValue().toString())
-//                Log.i ("DEBUG","arrel key"+ snapshot.key.toString())
-
-                // ara capturem tots els fills
-                var trobat =false
-                for (ds in snapshot.children) {
-   //                 Log.i ("DEBUG","DS key:"+ds.child("Uid").key.toString())
-   //                 Log.i ("DEBUG","DS value:"+ds.child("Uid").getValue().toString())
-   //                 Log.i ("DEBUG","DS data:"+ds.child("Data").getValue().toString())
-   //                 Log.i ("DEBUG","DS mail:"+ds.child("Email").getValue().toString())
-
-                    // Si el email de la base de dades es igual al email que s'ha introduit
-                    if(ds.child("Email").value.toString() == user?.email){
-                        trobat=true
-                        // Setejar dades del jugador
-                        puntuacio.text = ds.child("Puntuacio").value.toString()
-                        uid.text = ds.child("Uid").value.toString()
-                        correo.text = ds.child("Email").value.toString()
-                        nom.text = ds.child("Nom").value.toString()
-                        nivell = ds.child("Nivell").value.toString()
-                    }
-                    if (!trobat)
-                    {
-                        Log.e ("ERROR","ERROR NO TROBAT MAIL")
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.e ("ERROR","ERROR DATABASE CANCEL")
-            }
-        })
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
+        setContentView(R.layout.activity_menu)
         consultaDadesJugador()
 
         val tf = Typeface.createFromAsset(assets,"fonts/TiltWarp-Regular.ttf")
@@ -92,7 +52,26 @@ class MenuActivity : AppCompatActivity() {
         PuntuacionsBtn =findViewById<Button>(R.id.PuntuacionsBtn)
         jugarBtn =findViewById<Button>(R.id.jugarBtn)
 
-        // setejar els tipus de lletra als botons o texts
+        setFontsToElements(tf)
+
+        // Events al fer click
+        CreditsBtn.setOnClickListener(){
+            Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
+        }
+        PuntuacionsBtn.setOnClickListener(){
+            carregarPuntuacions()
+        }
+        jugarBtn.setOnClickListener(){
+            SeleccionarNivell()
+        }
+        tancarSessio.setOnClickListener(){
+            tancalaSessio()
+        }
+        auth = FirebaseAuth.getInstance()
+        user = auth.currentUser
+    }
+
+    private fun setFontsToElements(tf: Typeface?) {
         miPuntuaciotxt.setTypeface(tf)
         puntuacio.setTypeface(tf)
         uid.setTypeface(tf)
@@ -102,25 +81,40 @@ class MenuActivity : AppCompatActivity() {
         CreditsBtn.setTypeface(tf)
         PuntuacionsBtn.setTypeface(tf)
         jugarBtn.setTypeface(tf)
+    }
 
+    override fun onStart(){
+        Usuarilogejat()
+        super.onStart()
+    }
+    private fun consultaDadesJugador() {
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val bdreference:DatabaseReference = database.getReference("jugador")
 
-        // Events al fer click
-        CreditsBtn.setOnClickListener(){
-            Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
-        }
-        PuntuacionsBtn.setOnClickListener(){
-            carregarPuntuacions()
-//            Toast.makeText(this,"Puntuacions", Toast.LENGTH_SHORT).show()
-        }
-        jugarBtn.setOnClickListener(){
-            SeleccionarNivell()
-        }
-        tancarSessio.setOnClickListener(){
-            tancalaSessio()
-        }
+        bdreference.addValueEventListener (object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var trobat =false
+                for (ds in snapshot.children) {
+   //                 Log.i ("DEBUG","DS key:"+ds.child("Uid").key.toString())
 
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser
+                    if(ds.child("Email").value.toString() == user?.email){
+                        trobat=true
+                        puntuacio.text = ds.child("Puntuacio").value.toString()
+                        uid.text = ds.child("Uid").value.toString()
+                        correo.text = ds.child("Email").value.toString()
+                        nom.text = ds.child("Nom").value.toString()
+                        nivell = ds.child("Nivell").value.toString()
+                    }
+                    if (!trobat)
+                    {
+                        Log.e ("ERROR","ERROR NO TROBAT MAIL")
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e ("ERROR","ERROR DATABASE CANCEL")
+            }
+        })
     }
 
     private fun SeleccionarNivell() {

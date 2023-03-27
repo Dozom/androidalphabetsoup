@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1B1B"
-    tools:context=".selecccioniNivell">
+    android:background="#1B1B1B">
     <ImageView
         android:id="@+id/fondomontse"
         android:layout_width="wrap_content"
@@ -20,17 +19,17 @@
         android:scaleType ="fitXY"
         app:srcCompat="@drawable/backgroundlevels" />
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/lvl1Button"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginStart="50dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:background="@android:color/transparent"
-    app:srcCompat="@drawable/lvl1" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lvl1" />
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/lvl2Button"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginEnd="50dp"
@@ -41,7 +40,7 @@
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/lvl2" />
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/lvl3Button"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginStart="50dp"
