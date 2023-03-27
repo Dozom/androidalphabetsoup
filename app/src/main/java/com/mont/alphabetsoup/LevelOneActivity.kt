@@ -6,17 +6,15 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.random.Random
 
 
 class LevelOneActivity : AppCompatActivity() {
     lateinit var countTime: TextView
-    lateinit var letterPanel: GridLayout
-    lateinit var board: BoardController
+    private lateinit var letterPanel: GridLayout
+    private lateinit var board: BoardController
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +26,10 @@ class LevelOneActivity : AppCompatActivity() {
         board.initBoard()
         for (i in 0 until 8) {
             for (k in 0 until 6) {
-                var t = TextView(this)
+                val t = TextView(this)
                 t.textSize = 18F
-                t.width = 115
-                t.height = 81
+                t.width = 160
+                t.height = 116
                 t.text = board.boardArr[i][k].toString()
                 t.gravity = Gravity.CENTER_HORIZONTAL
                 t.setTypeface(null, Typeface.BOLD)
@@ -57,10 +55,10 @@ class LevelOneActivity : AppCompatActivity() {
         letterPanel.removeAllViews()
         for (i in 0 until 8) {
             for (k in 0 until 6) {
-                var t = TextView(this)
+                val t = TextView(this)
                 t.textSize = 18F
-                t.width = 115
-                t.height = 81
+                t.width = 160
+                t.height = 116
                 t.gravity = Gravity.CENTER_HORIZONTAL
                 t.setTypeface(null, Typeface.BOLD)
 
@@ -69,7 +67,7 @@ class LevelOneActivity : AppCompatActivity() {
                     t.setBackgroundColor(Color.GREEN)
                 } else {
                     t.text = board.boardArr[i][k].toString()
-                    t.setBackgroundColor(Color.parseColor("#51AEFF"))
+                    t.setBackgroundColor(Color.parseColor("#F1F8FF"))
                 }
                 t.setOnClickListener {
                     board.addToClicked("" + i + "" + k + "")
