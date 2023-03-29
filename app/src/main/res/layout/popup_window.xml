@@ -7,6 +7,7 @@
     android:backgroundTint="#62def8">
 
     <TextView
+        android:id="@+id/windowTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

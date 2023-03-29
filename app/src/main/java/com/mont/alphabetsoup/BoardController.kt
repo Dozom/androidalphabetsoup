@@ -4,7 +4,7 @@ import java.util.*
 
 class BoardController {
     private val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
+    var foundWords = mutableListOf<String>()
     val greenSoup = arrayOf(
         charArrayOf('X', 'X', 'X', 'X', 'X', 'X'),
         charArrayOf('X', 'X', 'X', 'X', 'X', 'X'),
@@ -64,6 +64,9 @@ class BoardController {
                 "7535" -> word = "KOALA"
                 "4414" -> word = "BIRD"
                 "3151" -> word = "COW"
+            }
+            if (!foundWords.contains(clicked)){
+                foundWords.add(clicked)
             }
             fillGreenSoup(word)
             touchedCounter = 0

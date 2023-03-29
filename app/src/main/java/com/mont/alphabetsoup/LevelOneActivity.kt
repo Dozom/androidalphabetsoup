@@ -15,6 +15,7 @@ class LevelOneActivity : AppCompatActivity() {
     lateinit var countTime: TextView
     private lateinit var letterPanel: GridLayout
     private lateinit var board: BoardController
+    var victory : Boolean = false
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,7 @@ class LevelOneActivity : AppCompatActivity() {
                 letterPanel.addView(t)
             }
         }
-        startTimeCounter()
+        startTimeCounter(30000)
     }
     private fun repaint(board: BoardController){
         Toast.makeText(this, board.returnCorrect().toString()+"re", Toast.LENGTH_SHORT).show()
@@ -76,6 +77,9 @@ class LevelOneActivity : AppCompatActivity() {
                         if (board.returnCorrect()){
                             repaint(board)
                         }
+                        if (board.foundWords.size == 7){
+                            showPopupWindow(true)
+                        }
                         board.touchedCounter = 0
                         board.clicked = ""
                     }
@@ -86,21 +90,26 @@ class LevelOneActivity : AppCompatActivity() {
         }
 
     }
-    private fun startTimeCounter() {
-        object : CountDownTimer(30000, 1000) {
+    private fun startTimeCounter(time: Long) {
+        object : CountDownTimer(time, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 countTime.text = (millisUntilFinished / 1000).toString()
+                if (board.foundWords.size == 7) {
+                    onFinish()
+                }
             }
-
             override fun onFinish() {
-                countTime.text = "S'ha acabat el temps"
-                showPopupWindow()
+                countTime.text = "0"
+
+                if (!victory){
+                    showPopupWindow(false)
+                }
             }
         }.start()
     }
 
     @SuppressLint("InflateParams")
-    fun showPopupWindow() {
+    fun showPopupWindow(win: Boolean) {
 
         // inflate the layout of the popup window
         val inflater: LayoutInflater = layoutInflater
@@ -117,6 +126,11 @@ class LevelOneActivity : AppCompatActivity() {
         val view = findViewById<View>(android.R.id.content)
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 
+        if (win){
+            popupWindow.contentView.findViewById<TextView>(R.id.windowTitle).text = "Has guanyat, enhorabona"
+            popupWindow.contentView.findViewById<ImageView>(R.id.imageView).visibility = View.GONE
+            victory = true
+        }
         popupWindow.contentView.findViewById<Button>(R.id.retryButton).setOnClickListener {
             popupWindow.dismiss();
             finish();
