@@ -1,6 +1,7 @@
 package com.mont.alphabetsoup
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -14,6 +15,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
+        val mediaplayer = MediaPlayer()
+        mediaplayer.setDataSource(resources.openRawResourceFd(R.raw.splashsound))
+        mediaplayer.prepare()
+        mediaplayer.start()
 
         val logo = findViewById<ImageView>(R.id.splashImageContainer);
         Glide.with(this).load(R.drawable.splashimage).into(logo)

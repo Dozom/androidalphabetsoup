@@ -6,30 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1B1B"
-    tools:context=".Login">
+    tools:context=".ChangePassword">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp">
-        <!-- ENTREM EL MAIL -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner">
-
-            <EditText
-                android:id="@+id/correoLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/correoLogin"
-                android:inputType="textEmailAddress"
-                android:textColor="#FF0000"
-                android:textColorHint="#FFFFFF" />
-            <!-- forcem que la entrada sigui un correu electronic -->
-            <!-- ENTREM EL PASSWORD -->
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -38,7 +21,7 @@
             app:passwordToggleEnabled="true">
 
             <EditText
-                android:id="@+id/passLogin"
+                android:id="@+id/passReset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -51,14 +34,13 @@
 
         <!-- BOTO DE ENTRAR -->
         <Button
-            android:id="@+id/Btnlogin"
+            android:id="@+id/BtnresetPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Btnlogin"
+            android:text="@string/passLogin"
             android:layout_marginTop="10dp"
             android:background="@drawable/botopropi"
             android:textColor="@color/black"
-
             />
     </LinearLayout>
 </RelativeLayout>

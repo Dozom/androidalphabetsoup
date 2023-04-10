@@ -102,5 +102,15 @@
             android:background="@drawable/botopropi"
             android:textColor="@color/black"
             />
+        <!-- BOTO de canviar contrasenya -->
+        <Button
+            android:id="@+id/canviarPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/canviarContrasenya"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/botopropi"
+            android:textColor="@color/black"
+            />
     </LinearLayout>
 </ScrollView>

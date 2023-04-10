@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 class MenuActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
@@ -20,6 +22,7 @@ class MenuActivity : AppCompatActivity() {
     lateinit var CreditsBtn: Button
     lateinit var PuntuacionsBtn: Button
     lateinit var jugarBtn: Button
+    lateinit var canviarContrasenyaBtn: Button
     lateinit var miPuntuaciotxt: TextView
     lateinit var puntuacio: TextView
     lateinit var uid: TextView
@@ -34,10 +37,9 @@ class MenuActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
         setContentView(R.layout.activity_menu)
-        consultaDadesJugador()
-
+        val photo = findViewById<ImageView>(R.id.alienimagen)
+        Picasso.get().load("https://d320djwtwnl5uo.cloudfront.net/recetas/cover/pechu_h6fGsnlS8gIM3iBoPC9mZQad0bXOt5.png").into(photo)
         val tf = Typeface.createFromAsset(assets,"fonts/TiltWarp-Regular.ttf")
         tancarSessio = findViewById<Button>(R.id.tancarSessio)
 
@@ -47,16 +49,19 @@ class MenuActivity : AppCompatActivity() {
         uid=findViewById(R.id.uid)
         correo=findViewById(R.id.correo)
         nom=findViewById(R.id.nom)
+        consultaDadesJugador()
+
         tancarSessio =findViewById<Button>(R.id.tancarSessio)
         CreditsBtn =findViewById<Button>(R.id.CreditsBtn)
         PuntuacionsBtn =findViewById<Button>(R.id.PuntuacionsBtn)
         jugarBtn =findViewById<Button>(R.id.jugarBtn)
+        canviarContrasenyaBtn = findViewById<Button>(R.id.canviarPassword)
 
         setFontsToElements(tf)
 
         // Events al fer click
         CreditsBtn.setOnClickListener(){
-            Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
+            creditsScreen()
         }
         PuntuacionsBtn.setOnClickListener(){
             carregarPuntuacions()
@@ -66,6 +71,9 @@ class MenuActivity : AppCompatActivity() {
         }
         tancarSessio.setOnClickListener(){
             tancalaSessio()
+        }
+        canviarContrasenyaBtn.setOnClickListener(){
+            canviarContrasenya()
         }
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
@@ -81,6 +89,7 @@ class MenuActivity : AppCompatActivity() {
         CreditsBtn.setTypeface(tf)
         PuntuacionsBtn.setTypeface(tf)
         jugarBtn.setTypeface(tf)
+        canviarContrasenyaBtn.setTypeface(tf)
     }
 
     override fun onStart(){
@@ -95,7 +104,7 @@ class MenuActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var trobat =false
                 for (ds in snapshot.children) {
-   //                 Log.i ("DEBUG","DS key:"+ds.child("Uid").key.toString())
+                    Log.i ("DEBUGY","DS key:"+ds.child("Uid").key.toString())
 
                     if(ds.child("Email").value.toString() == user?.email){
                         trobat=true
@@ -138,6 +147,26 @@ class MenuActivity : AppCompatActivity() {
 
         // Canviar a la pantalla de la Main Activity
         val intent= Intent(this, PuntuacionsActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    private fun creditsScreen() {
+        // Tancar la sesió
+//        auth.signOut()
+
+        // Canviar a la pantalla de la Main Activity
+        val intent= Intent(this, CreditsActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    private fun canviarContrasenya() {
+        // Tancar la sesió
+//        auth.signOut()
+        val Uids: String = uid.text.toString()
+
+        // Canviar a la pantalla de la Main Activity
+        val intent= Intent(this, ChangePassword::class.java)
+        intent.putExtra("uid", Uids)
         startActivity(intent)
         finish()
     }

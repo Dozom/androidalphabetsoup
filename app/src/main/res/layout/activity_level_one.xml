@@ -130,42 +130,6 @@
         app:layout_constraintVertical_bias="1.0"
         tools:context=".LevelOne" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="#8EFF5C"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="18dp"
-
-
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@drawable/rounded_corner"
-
-        android:backgroundTint="#8EFF5C"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="18dp"
-        android:textStyle="bold"
-
-
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
